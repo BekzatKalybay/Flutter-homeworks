@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'task_bloc.dart';
+import 'screens/task_screen.dart';
+import 'blocs/localization_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,54 +13,24 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Управление задачами',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      navigatorKey: navigatorKey,
-      home: BlocProvider(
-        create: (context) => TaskBloc(),
-        child: TaskScreen(),
-      ),
-    );
-  }
-}
-
-class TaskScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final TaskBloc taskBloc = BlocProvider.of<TaskBloc>(context);
-
-    return Scaffold(
-      appBar: AppBar(title: Text('Список задач')),
-      body: BlocBuilder<TaskBloc, List<String>>(
-        builder: (context, tasks) => ListView.separated(
-          itemCount: tasks.length,
-          separatorBuilder: (context, index) => Divider(),
-          itemBuilder: (context, index) {
-            final task = tasks[index];
-            return ListTile(
-              title: Text(task),
-              onTap: () {
-                if (index == 0) {
-                  taskBloc.add(TaskEvent.editTask);
-                }
-              },
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () => taskBloc.add(TaskEvent.deleteTask),
-              ),
-            );
-          },
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          taskBloc.add(TaskEvent.addTask);
+    return BlocProvider(
+      create: (context) => LocalizationBloc(), // Bloc для управления локализацией
+      child: BlocBuilder<LocalizationBloc, Locale>(
+        builder: (context, locale) {
+          return MaterialApp(
+            title: 'Управление задачами',
+            theme: ThemeData(primarySwatch: Colors.blue),
+            locale: locale, // Текущая локаль
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: TaskScreen(),
+          );
         },
-        tooltip: 'Добавить задачу',
-        child: Icon(Icons.add),
       ),
     );
   }
