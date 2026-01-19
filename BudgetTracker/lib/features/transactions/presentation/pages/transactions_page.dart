@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/di/injection_container.dart';
+import '../../../../core/di/di.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/transaction_entity.dart';
 import '../../domain/types/transaction_type.dart';

@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/di/injection_container.dart';
+import '../../../../core/di/di.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/types/transaction_type.dart';
-import '../../domain/usecases/upsert_transaction_usecase.dart';
 import '../bloc/transactions_bloc.dart';
 import '../bloc/transactions_event.dart';
 import '../cubit/add_transaction_cubit.dart';
@@ -89,9 +88,7 @@ class _TransactionCreatePageState extends State<TransactionCreatePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddTransactionCubit(
-        upsertTransactionUseCase: getIt<UpsertTransactionUseCase>(),
-      ),
+      create: (context) => getIt<AddTransactionCubit>(),
       child: BlocListener<AddTransactionCubit, AddTransactionState>(
         listener: (context, state) {
           state.when(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'core/di/injection_container.dart';
+import 'core/di/di.dart';
 import 'app/router/app_router.dart';
 
 void main() async {
@@ -9,7 +9,9 @@ void main() async {
   // Initialize Hive
   await Hive.initFlutter();
   
-  await setupDependencyInjection();
+  // Initialize Dependency Injection
+  await initDi();
+  
   runApp(const BudgetTrackerApp());
 }
 
