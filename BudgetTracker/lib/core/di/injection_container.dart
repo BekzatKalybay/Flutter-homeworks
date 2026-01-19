@@ -9,7 +9,9 @@ import '../../features/transactions/data/repositories/transactions_repository_im
 import '../../features/transactions/domain/repositories/transactions_repository.dart';
 import '../../features/transactions/domain/usecases/delete_transaction_usecase.dart';
 import '../../features/transactions/domain/usecases/get_transactions_usecase.dart';
+import '../../features/transactions/domain/usecases/upsert_transaction_usecase.dart';
 import '../../features/transactions/presentation/bloc/transactions_bloc.dart';
+import '../../features/transactions/presentation/cubit/add_transaction_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -44,6 +46,9 @@ Future<void> setupDependencyInjection() async {
   );
   getIt.registerLazySingleton<DeleteTransactionUseCase>(
     () => DeleteTransactionUseCase(getIt()),
+  );
+  getIt.registerLazySingleton<UpsertTransactionUseCase>(
+    () => UpsertTransactionUseCase(getIt()),
   );
 
   // Transactions - Bloc (factory, not singleton, so each page gets a new instance)

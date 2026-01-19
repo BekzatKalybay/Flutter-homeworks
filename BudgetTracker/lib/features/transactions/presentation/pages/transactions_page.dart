@@ -206,8 +206,13 @@ class _TransactionsViewState extends State<_TransactionsView> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.router.push(const TransactionCreateRoute());
+        onPressed: () async {
+          // Push and wait for result
+          final result = await context.router.push(const TransactionCreateRoute());
+          // If transaction was created successfully, refresh the list
+          if (result == true) {
+            context.read<TransactionsBloc>().add(const TransactionsRefreshRequested());
+          }
         },
         child: const Icon(Icons.add),
       ),
