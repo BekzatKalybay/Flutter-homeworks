@@ -27,6 +27,10 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -37,6 +41,7 @@ dev_dependencies:
   freezed: ^2.4.6
   json_serializable: ^6.7.1
   auto_route_generator: ^7.3.0
+  hive_generator: ^2.0.1
 
   # Testing
   bloc_test: ^9.1.5

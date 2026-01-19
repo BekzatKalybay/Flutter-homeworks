@@ -1,2 +1,1 @@
-// Transaction model (JSON serializable)
-// TODO: Implement
+export '../dto/transaction_dto.dart';

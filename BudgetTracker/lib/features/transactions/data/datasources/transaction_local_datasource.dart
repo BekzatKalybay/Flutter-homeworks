@@ -1,2 +1,1 @@
-// Transaction local data source
-// TODO: Implement
+export 'transactions_local_datasource.dart';

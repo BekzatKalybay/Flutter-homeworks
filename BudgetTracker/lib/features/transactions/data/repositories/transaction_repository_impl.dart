@@ -1,2 +1,1 @@
-// Transaction repository implementation
-// TODO: Implement
+export 'transactions_repository_impl.dart';

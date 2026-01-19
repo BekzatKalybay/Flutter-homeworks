@@ -1,2 +1,1 @@
-// Transaction remote data source
-// TODO: Implement
+export 'transactions_remote_datasource.dart';
