@@ -1,2 +1,1 @@
-// Base failure classes
-// TODO: Implement failure classes
+export 'failure.dart';
