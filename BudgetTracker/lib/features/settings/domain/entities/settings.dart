@@ -1,0 +1,2 @@
+// Settings entity
+// TODO: Implement

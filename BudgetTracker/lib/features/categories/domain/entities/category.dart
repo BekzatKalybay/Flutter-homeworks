@@ -1,0 +1,2 @@
+// Category entity
+// TODO: Implement
