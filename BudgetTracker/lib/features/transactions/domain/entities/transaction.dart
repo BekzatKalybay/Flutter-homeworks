@@ -1,2 +1,1 @@
-// Transaction entity
-// TODO: Implement
+export 'transaction_entity.dart';
